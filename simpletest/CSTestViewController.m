@@ -18,7 +18,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -26,6 +25,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    static BOOL flip = NO;
+    self.view.backgroundColor = flip ? [UIColor orangeColor] : [UIColor purpleColor];
+    flip = !flip;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
 
@@ -39,11 +42,7 @@
 
 - (IBAction)push:(id)sender
 {
-    static BOOL flip = NO;
-    
     CSTestViewController *test = [[CSTestViewController alloc] init];
-    test.view.backgroundColor = flip ? [UIColor orangeColor] : [UIColor purpleColor];
-    flip = !flip;
     [self.navigationController pushViewController:test animated:YES];
 }
 

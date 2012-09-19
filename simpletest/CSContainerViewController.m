@@ -7,6 +7,8 @@
 
 //#define CONTAINMENT_METHODS_ENABLED
 
+///////////////////////////////////////////////////////////////
+
 @interface CSContainerViewController ()
 @property (nonatomic, strong) UINavigationController *childController;
 @end
@@ -19,8 +21,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        CSTestViewController *testVC = [[CSTestViewController alloc] init];
-        self.childController = [[UINavigationController alloc] initWithRootViewController:testVC];
+        CSTestViewController *testViewController = [[CSTestViewController alloc] init];
+        self.childController = [[UINavigationController alloc] initWithRootViewController:testViewController];
         
         NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
         [defaultCenter addObserver:self
@@ -49,9 +51,6 @@
 #else
     [self.view addSubview:self.childController.view];    
 #endif
-    
-//    self.childController.navigationBarHidden = YES;
-
 }
 
 - (void)_keyboardWillHideNotification:(NSNotification *)note
@@ -81,13 +80,11 @@
                           delay:0.0
                         options:0
                      animations:^{
-                         UIViewController *topController = self.childController.topViewController;
-//                         self.childController.view.frame = UIEdgeInsetsInsetRect(baseFrame, insets);
-                         topController.view.frame = UIEdgeInsetsInsetRect(baseFrame, insets);
-                         NSLog(@"Setting child frame to %@", NSStringFromCGRect(topController.view.frame));
+                         self.childController.view.frame = UIEdgeInsetsInsetRect(baseFrame, insets);
+                         NSLog(@"Setting child frame to %@", NSStringFromCGRect(self.childController.view.frame));
                      } completion:^(BOOL finished) {
-                         NSCAssert(finished == YES, @"Logic error. expected animation to finish");
 #ifdef CONTAINMENT_METHODS_ENABLED
+                         NSCAssert(finished == YES, @"Expected animation to finish");
                          [self.childController endAppearanceTransition];
 #endif
                      }];
