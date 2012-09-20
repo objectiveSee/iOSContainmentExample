@@ -12,4 +12,6 @@
 
 - (IBAction)push:(id)sender;
 
+@property (weak, nonatomic, readonly) IBOutlet UITextField *textField;
+
 @end

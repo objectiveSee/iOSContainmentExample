@@ -7,6 +7,8 @@
 
 //#define CONTAINMENT_METHODS_ENABLED
 
+#define HANDLE_KEYBOARD_NOTIFICATIONS
+
 ///////////////////////////////////////////////////////////////
 
 @interface CSContainerViewController ()
@@ -24,6 +26,7 @@
         CSTestViewController *testViewController = [[CSTestViewController alloc] init];
         self.childController = [[UINavigationController alloc] initWithRootViewController:testViewController];
         
+#ifdef HANDLE_KEYBOARD_NOTIFICATIONS
         NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
         [defaultCenter addObserver:self
                           selector:@selector(_keyboardWillHideNotification:)
@@ -33,6 +36,7 @@
                           selector:@selector(_keyboardWillShowNotification:)
                               name:UIKeyboardWillShowNotification
                             object:nil];
+#endif
     }
     return self;
 }

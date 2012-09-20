@@ -242,6 +242,7 @@
 		3064FEA116094890005082E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "simpletest/simpletest-Prefix.pch";
 				INFOPLIST_FILE = "simpletest/simpletest-Info.plist";
@@ -253,6 +254,7 @@
 		3064FEA216094890005082E5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "simpletest/simpletest-Prefix.pch";
 				INFOPLIST_FILE = "simpletest/simpletest-Info.plist";

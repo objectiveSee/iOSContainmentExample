@@ -8,10 +8,6 @@
 
 #import "CSTestViewController.h"
 
-@interface CSTestViewController ()
-
-@end
-
 @implementation CSTestViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -26,12 +22,23 @@
 {
     [super viewDidLoad];
     
-    static BOOL flip = NO;
-    self.view.backgroundColor = flip ? [UIColor orangeColor] : [UIColor purpleColor];
-    flip = !flip;
-    
+    NSInteger depth = [self.navigationController.viewControllers count];
+    self.view.backgroundColor = ( depth % 2 == 0) ? [UIColor orangeColor] : [UIColor purpleColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    
+//    [self.textField becomeFirstResponder];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear, Frame = %@", NSStringFromCGRect(self.view.frame));
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSLog(@"viewDidAppear, Frame = %@", NSStringFromCGRect(self.view.frame));
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
